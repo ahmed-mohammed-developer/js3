@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+    <!-- يجعل الصفحة مناسبة لعرض الهاتف والكمبيوتر -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معرض الصور</title>
+  <!-- ربط ملفات CSS وJavaScript بالصفحة -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="page__header">
+      <p class="page__eyebrow">لحظات تستحق المشاهدة</p>
+      <h1>معرض الصور</h1>
+      <p>اختر صورة لعرضها بحجم أكبر ثم تنقل بين الصور</p>
+    </header>
+
+        <!-- شبكة الصور المصغّرة -->
+      <section class="gallery" data-gallery aria-label="معرض الصور">
+        <button
+         class="gallery__item"
+         type="button"
+         data-full="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85"
+         data-caption="بحيرة هادئة بين الجبال"
+         aria-label="تكبير صورة بحيرة بين الجبال"
+         >
+        <img
+          src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=650&q=75"
+          alt="بحيرة هادئة بين الجبال"
+          loading="lazy"
+        />
+        <span class="gallery__caption">بين الجبال</span>
+        </button>
+
+         <button
+        class="gallery__item"
+        type="button"
+        data-full="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85"
+        data-caption="مساحات طبيعية واسعة"
+        aria-label="تكبير صورة المساحات الطبيعية"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=650&q=75"
+          alt="مساحات طبيعية واسعة"
+          loading="lazy"
+        />
+        <span class="gallery__caption">مساحات مفتوحة</span>
+      </button>
+      <button
+        class="gallery__item"
+        type="button"
+        data-full="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=85"
+        data-caption="أمواج البحر عند الشاطئ"
+        aria-label="تكبير صورة أمواج البحر"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=650&q=75"
+          alt="أمواج البحر عند الشاطئ"
+          loading="lazy"
+        />
+        <span class="gallery__caption">صوت البحر</span>
+      </button>
+      <button
+        class="gallery__item"
+        type="button"
+        data-full="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1800&q=85"
+        data-caption="ضوء الغروب بين الأشجار"
+        aria-label="تكبير صورة الغروب"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=650&q=75"
+          alt="ضوء الغروب بين الأشجار"
+          loading="lazy"
+        />
+        <span class="gallery__caption">وقت الغروب</span>
+      </button>
+      <button
+        class="gallery__item"
+        type="button"
+        data-full="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1800&q=85"
+        data-caption="قمم جبلية تحت السماء"
+        aria-label="تكبير صورة القمم الجبلية"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=650&q=75"
+          alt="قمم جبلية تحت السماء"
+          loading="lazy"
+        />
+        <span class="gallery__caption">قمم عالية</span>
+      </button>
+      <button
+        class="gallery__item"
+        type="button"
+        data-full="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=85"
+        data-caption="بحيرة تحيط بها الجبال"
+        aria-label="تكبير صورة البحيرة"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=650&q=75"
+          alt="بحيرة تحيط بها الجبال"
+          loading="lazy"
+        />
+        <span class="gallery__caption">مياه صافية</span>
+      </button>
+      </section>
+  </main>
+
+    <!-- نافذة الصورة المكبّرة؛ dialog يوفّر سلوك نافذة حوار للمتصفح وقارئ الشاشة -->
+  <dialog class="lightbox" data-lightbox aria-labelledby="lightbox-title">
+    <h2 class="visually-hidden" id="lightbox-title">
+        عرض الصور بحجم مكبر
+    </h2>
+    <div class="lightbox__top">
+       <!-- يتغير الرقم عند الانتقال بين الصور -->
+      <p class="lightbox__counter" data-counter aria-live="polite"></p>
+      <button
+      class="lightbox__button lightbox__close"
+      type="button"
+      data-close
+      aria-label="إغلاق الصورة المكبرة"
+      >
+      <span aria-hidden="true">X</span>
+      </button>
+    </div>
+
+    <div class="lightbox__viewer">
+      <!-- JavaScript يغيّر مصدر الصورة ووصفها عند التنقل -->
+        <img class="lightbox__image" data-lightbox-image src="" alt="" />
+       <button
+        class="lightbox__button lightbox__arrow lightbox__arrow--previous"
+        type="button"
+        data-previous
+        aria-label="الصورة السابقة"
+      >
+        <span aria-hidden="true">←</span>
+      </button>
+      <button
+        class="lightbox__button lightbox__arrow lightbox__arrow--next"
+        type="button"
+        data-next
+        aria-label="الصورة التالية"
+      >
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+    <!-- يظهر وصف الصورة الحالية أسفلها -->
+    <p class="lightbox__caption" data-lightbox-caption></p>
+  </dialog>
+</body>
+</html>
