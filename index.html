@@ -1,40 +1,132 @@
-<!DOCTYPE html>
+
+<!doctype html>
+<!--
+  يحدد نوع المستند بأنه HTML5،
+  حتى يعرض المتصفح الصفحة وفق معايير HTML الحديثة.
+-->
+
 <html lang="ar" dir="rtl">
+<!--
+  lang="ar" يحدد لغة محتوى الصفحة بأنها العربية،
+  ويساعد قارئات الشاشة ومحركات البحث على فهم اللغة.
+
+  dir="rtl" يجعل اتجاه النص من اليمين إلى اليسار،
+  وهو الاتجاه المناسب للغة العربية.
+-->
+
 <head>
-  <meta charset="UTF-8">
-    <!-- يجعل الصفحة مناسبة لعرض الهاتف والكمبيوتر -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- يحدد ترميز الأحرف حتى تظهر اللغة العربية بصورة صحيحة -->
+  <meta charset="UTF-8" />
+
+  <!--
+    يجعل عرض الصفحة مناسبًا لحجم شاشة الجهاز،
+    سواء كان هاتفًا أو جهازًا لوحيًا أو كمبيوتر.
+    initial-scale=1.0 يحدد مستوى التكبير الأولي عند فتح الصفحة.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- النص الذي يظهر في تبويب المتصفح -->
   <title>معرض الصور</title>
-  <!-- ربط ملفات CSS وJavaScript بالصفحة -->
+
+  <!--
+    ربط ملف CSS الذي يحتوي على تنسيقات الصفحة.
+    يجب أن يكون style.css في المسار المحدد هنا.
+  -->
   <link rel="stylesheet" href="style.css" />
+
+  <!--
+    ربط ملف JavaScript المسؤول عن التفاعل مع الصور.
+    defer يؤخر تنفيذ JavaScript حتى ينتهي المتصفح من تحليل HTML،
+    مما يسمح بوجود العناصر التي سيبحث عنها الكود عند تشغيله.
+  -->
   <script src="script.js" defer></script>
 </head>
+
 <body>
+  <!--
+    main يمثل المحتوى الرئيسي للصفحة،
+    ويحتوي هنا على عنوان المعرض والصور المصغّرة.
+  -->
   <main class="page">
+
+    <!-- رأس الصفحة: النص التمهيدي والعنوان والوصف -->
     <header class="page__header">
+
+      <!-- عبارة تمهيدية تظهر قبل العنوان الرئيسي -->
       <p class="page__eyebrow">لحظات تستحق المشاهدة</p>
+
+      <!-- العنوان الرئيسي للصفحة -->
       <h1>معرض الصور</h1>
-      <p>اختر صورة لعرضها بحجم أكبر ثم تنقل بين الصور</p>
+
+      <!-- تعليمات مختصرة للمستخدم عن كيفية استخدام المعرض -->
+      <p>اختر صورة لعرضها بحجم أكبر، ثم تنقّل بين الصور.</p>
     </header>
 
-        <!-- شبكة الصور المصغّرة -->
-      <section class="gallery" data-gallery aria-label="معرض الصور">
-        <button
-         class="gallery__item"
-         type="button"
-         data-full="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85"
-         data-caption="بحيرة هادئة بين الجبال"
-         aria-label="تكبير صورة بحيرة بين الجبال"
-         >
+
+    <!-- =====================================================
+         شبكة الصور المصغّرة
+         ===================================================== -->
+
+    <!--
+      section يجمع الصور التي تنتمي إلى معرض واحد.
+
+      class="gallery" يستخدمه CSS لتنسيق الصور في شبكة.
+
+      data-gallery خاصية مخصصة يتعرف عليها JavaScript
+      للوصول إلى عنصر المعرض.
+
+      aria-label يقدم اسمًا وصفيًا للمنطقة لقارئات الشاشة.
+    -->
+    <section class="gallery" data-gallery aria-label="معرض الصور">
+
+      <!--
+        كل صورة مصغّرة موجودة داخل زر.
+        استخدام button يسمح بفتح الصورة بلوحة المفاتيح أيضًا.
+
+        type="button" يمنع الزر من إرسال نموذج عند إضافته
+        مستقبلًا إلى نموذج HTML.
+
+        data-full يحتوي على رابط الصورة عالية الجودة،
+        ويقرأه JavaScript عند فتح الصورة المكبّرة.
+
+        data-caption يحتوي على الوصف الذي يظهر أسفل الصورة الكبيرة.
+
+        aria-label يقدم اسمًا واضحًا للزر لمستخدمي قارئات الشاشة.
+      -->
+      <button
+        class="gallery__item"
+        type="button"
+        data-full="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85"
+        data-caption="بحيرة هادئة بين الجبال"
+        aria-label="تكبير صورة بحيرة بين الجبال"
+      >
+
+        <!--
+          الصورة المصغّرة التي تظهر داخل شبكة المعرض.
+
+          src يحدد رابط الصورة المعروضة في الصفحة.
+
+          alt يقدم وصفًا بديلًا للصورة لمن لا يستطيع رؤيتها.
+
+          loading="lazy" يسمح بتأجيل تحميل الصورة حتى تقترب
+          من منطقة العرض، مما قد يقلل التحميل الأولي للصفحة.
+        -->
         <img
           src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=650&q=75"
           alt="بحيرة هادئة بين الجبال"
           loading="lazy"
         />
-        <span class="gallery__caption">بين الجبال</span>
-        </button>
 
-         <button
+        <!--
+          عنوان مرئي يوضع فوق الصورة.
+          ينسقه CSS ويضعه فوق التدرج الداكن.
+        -->
+        <span class="gallery__caption">بين الجبال</span>
+      </button>
+
+
+      <!-- الصورة الثانية في المعرض -->
+      <button
         class="gallery__item"
         type="button"
         data-full="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85"
@@ -46,8 +138,12 @@
           alt="مساحات طبيعية واسعة"
           loading="lazy"
         />
+
         <span class="gallery__caption">مساحات مفتوحة</span>
       </button>
+
+
+      <!-- الصورة الثالثة في المعرض -->
       <button
         class="gallery__item"
         type="button"
@@ -60,8 +156,12 @@
           alt="أمواج البحر عند الشاطئ"
           loading="lazy"
         />
+
         <span class="gallery__caption">صوت البحر</span>
       </button>
+
+
+      <!-- الصورة الرابعة في المعرض -->
       <button
         class="gallery__item"
         type="button"
@@ -74,8 +174,12 @@
           alt="ضوء الغروب بين الأشجار"
           loading="lazy"
         />
+
         <span class="gallery__caption">وقت الغروب</span>
       </button>
+
+
+      <!-- الصورة الخامسة في المعرض -->
       <button
         class="gallery__item"
         type="button"
@@ -88,8 +192,12 @@
           alt="قمم جبلية تحت السماء"
           loading="lazy"
         />
+
         <span class="gallery__caption">قمم عالية</span>
       </button>
+
+
+      <!-- الصورة السادسة في المعرض -->
       <button
         class="gallery__item"
         type="button"
@@ -102,51 +210,141 @@
           alt="بحيرة تحيط بها الجبال"
           loading="lazy"
         />
+
         <span class="gallery__caption">مياه صافية</span>
       </button>
-      </section>
-  </main>
 
-    <!-- نافذة الصورة المكبّرة؛ dialog يوفّر سلوك نافذة حوار للمتصفح وقارئ الشاشة -->
+    </section>
+    <!-- نهاية شبكة الصور المصغّرة -->
+
+  </main>
+  <!-- نهاية المحتوى الرئيسي -->
+
+
+  <!-- =====================================================
+       نافذة عرض الصور المكبّرة (Lightbox)
+       ===================================================== -->
+
+  <!--
+    dialog عنصر HTML مخصص لإنشاء نافذة حوار.
+
+    class="lightbox" يحدد التنسيقات الموجودة في CSS.
+
+    data-lightbox يسمح لـ JavaScript بالعثور على النافذة.
+
+    aria-labelledby يربط اسم النافذة بالعنوان الذي يحمل
+    المعرّف lightbox-title.
+
+    لا نضيف الخاصية open هنا؛ لأن JavaScript سيفتح النافذة
+    باستخدام showModal() عند اختيار صورة.
+  -->
   <dialog class="lightbox" data-lightbox aria-labelledby="lightbox-title">
+
+    <!--
+      عنوان النافذة.
+      الصنف visually-hidden يخفيه بصريًا،
+      لكنه يبقيه متاحًا لقارئات الشاشة.
+    -->
     <h2 class="visually-hidden" id="lightbox-title">
-        عرض الصور بحجم مكبر
+      عرض الصورة بحجم أكبر
     </h2>
+
+
+    <!-- الشريط العلوي الذي يحتوي على العداد وزر الإغلاق -->
     <div class="lightbox__top">
-       <!-- يتغير الرقم عند الانتقال بين الصور -->
+
+      <!--
+        يعرض رقم الصورة الحالية والعدد الإجمالي للصور.
+
+        data-counter يسمح لـ JavaScript بتحديث النص.
+
+        aria-live="polite" يطلب من قارئ الشاشة الإعلان
+        عن التحديثات النصية عندما يكون ذلك مناسبًا.
+      -->
       <p class="lightbox__counter" data-counter aria-live="polite"></p>
+
+      <!--
+        زر إغلاق النافذة.
+
+        data-close يستخدمه JavaScript لتحديد الزر.
+
+        aria-label يوفر وصفًا واضحًا للزر لقارئات الشاشة.
+      -->
       <button
-      class="lightbox__button lightbox__close"
-      type="button"
-      data-close
-      aria-label="إغلاق الصورة المكبرة"
+        class="lightbox__button lightbox__close"
+        type="button"
+        data-close
+        aria-label="إغلاق الصورة المكبّرة"
       >
-      <span aria-hidden="true">X</span>
+        <!--
+          رمز الإغلاق ظاهر بصريًا.
+          aria-hidden="true" يمنع قارئ الشاشة من قراءة الرمز
+          لأن الزر لديه بالفعل وصف واضح في aria-label.
+        -->
+        <span aria-hidden="true">×</span>
       </button>
     </div>
 
+
+    <!-- ===================================================
+         منطقة الصورة المكبّرة وأزرار التنقل
+         =================================================== -->
+
     <div class="lightbox__viewer">
-      <!-- JavaScript يغيّر مصدر الصورة ووصفها عند التنقل -->
-        <img class="lightbox__image" data-lightbox-image src="" alt="" />
-       <button
+
+      <!--
+        الصورة التي ستعرض بحجم كبير.
+
+        data-lightbox-image يسمح لـ JavaScript بالوصول إليها.
+
+        src فارغ مبدئيًا؛ يضع JavaScript الرابط المناسب
+        عند اختيار صورة من المعرض.
+
+        alt فارغ مبدئيًا؛ يحدّثه JavaScript حسب الصورة الحالية.
+      -->
+      <img
+        class="lightbox__image"
+        data-lightbox-image
+        src=""
+        alt=""
+      />
+
+
+      <!-- زر الانتقال إلى الصورة السابقة -->
+      <button
         class="lightbox__button lightbox__arrow lightbox__arrow--previous"
         type="button"
         data-previous
         aria-label="الصورة السابقة"
       >
+        <!-- رمز السهم زخرفي؛ لذلك نخفيه عن قارئ الشاشة -->
         <span aria-hidden="true">←</span>
       </button>
+
+
+      <!-- زر الانتقال إلى الصورة التالية -->
       <button
         class="lightbox__button lightbox__arrow lightbox__arrow--next"
         type="button"
         data-next
         aria-label="الصورة التالية"
       >
+        <!-- رمز السهم زخرفي؛ لذلك نخفيه عن قارئ الشاشة -->
         <span aria-hidden="true">→</span>
       </button>
+
     </div>
-    <!-- يظهر وصف الصورة الحالية أسفلها -->
+    <!-- نهاية منطقة عرض الصورة -->
+
+
+    <!--
+      وصف الصورة الحالية أسفل الصورة المكبّرة.
+      يحدّث JavaScript هذا العنصر عند الانتقال بين الصور.
+    -->
     <p class="lightbox__caption" data-lightbox-caption></p>
+
   </dialog>
+  <!-- نهاية نافذة الصور المكبّرة -->
+
 </body>
 </html>
